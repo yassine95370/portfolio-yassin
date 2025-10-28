@@ -1,161 +1,213 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portfolio – Yassine Messaoudi (TSSR)</title>
-  <meta name="description" content="Portfolio de Yassine Messaoudi – Technicien Supérieur Systèmes & Réseaux (TSSR). Projets, compétences, expériences et contact." />
+  <meta name="description" content="Portfolio de Yassine Messaoudi – Technicien Supérieur Systèmes & Réseaux (TSSR). Projets, compétences, commandes et contact." />
   <link rel="preload" href="assets/yassine.jpg" as="image">
-  <style>
-    :root{
-      --bg:#0b0f14; --panel:#0f1620; --panel-2:#0b131c;
-      --text:#e6eef8; --muted:#9fb3c8; --accent:#38bdf8;
-      --radius:16px; --ring:rgba(56,189,248,.35);
-    }
-    *,*::before,*::after{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;line-height:1.65;color:var(--text);background:#070b11;overflow-x:hidden}
-    img{max-width:100%;display:block}
-    a{text-decoration:none;color:inherit}
-    h1,h2{margin:0 0 .5em}
-
-    /* ==== FOND RÉSEAU ==== */
-    canvas#bg{position:fixed;inset:0;z-index:-1;background:#070b11}
-
-    /* ==== NAV ==== */
-    .nav{position:sticky;top:0;z-index:10;background:rgba(11,15,20,.9);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.06)}
-    .nav-inner{max-width:980px;margin:auto;padding:10px 16px;display:flex;gap:10px;overflow:auto}
-    .chip{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.08);color:#cfe8ff;white-space:nowrap;font-weight:600}
-    .chip:hover{box-shadow:0 0 0 2px var(--ring)}
-
-    /* ==== HEADER ==== */
-    header{text-align:center;padding:32px 16px}
-    .avatar{width:160px;height:160px;border-radius:50%;margin:0 auto 12px;overflow:hidden;position:relative;background:#0d141c;box-shadow:0 0 40px rgba(56,189,248,.2) inset,0 0 25px rgba(56,189,248,.3)}
-    .avatar::after{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(56,189,248,.3);animation:pulse 3s ease-in-out infinite}
-    @keyframes pulse{0%{transform:scale(1);opacity:.6}50%{transform:scale(1.04);opacity:1}100%{transform:scale(1);opacity:.6}}
-    .title{font-size:clamp(28px,6vw,42px)}
-    .subtitle{color:var(--muted)}
-    .cta{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:12px}
-    .btn{padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer;border:0}
-    .btn-primary{background:linear-gradient(180deg,var(--accent),#0fa3ff);color:#04121b}
-    .btn-ghost{background:#111a25;color:#e6eef8;border:1px solid rgba(255,255,255,.1)}
-
-    /* ==== SECTION ==== */
-    .wrapper{max-width:960px;margin:auto;padding:16px}
-    section{margin:28px 0;padding:20px;border-radius:var(--radius);background:linear-gradient(180deg,var(--panel),var(--panel-2));box-shadow:0 0 20px rgba(0,0,0,.4),inset 0 0 0 1px rgba(255,255,255,.06)}
-    h2{color:#9fdcff}
-    .skills{display:flex;flex-wrap:wrap;gap:8px}
-    .badge{background:#0d1b27;padding:6px 10px;border-radius:999px;font-size:14px;border:1px solid rgba(255,255,255,.08)}
-    .projects{display:grid;gap:14px}
-    .card{padding:14px;border-radius:14px;background:#0c141d;border:1px solid rgba(255,255,255,.07)}
-    footer{text-align:center;margin:30px 0;color:#8aa3ba}
-
-    /* ==== DOCK ==== */
-    .dock{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);display:flex;gap:10px;z-index:30;background:rgba(22,28,36,.9);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:8px 10px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
-    .dock-btn{display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:#e6f3ff;font-weight:600}
-    .dock-btn:hover{box-shadow:0 0 0 2px var(--ring)}
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <canvas id="bg"></canvas>
+  <!-- Canvas de fond: LIGNES RESEAU -->
+  <canvas id="bg-lines" aria-hidden="true"></canvas>
 
-  <nav class="nav">
+  <!-- NAV -->
+  <nav class="nav" aria-label="Navigation principale">
     <div class="nav-inner">
+      <div class="brand">YM · <span class="muted">TSSR</span></div>
+      <div class="grow"></div>
       <a class="chip" href="#about">À propos</a>
       <a class="chip" href="#skills">Compétences</a>
+      <a class="chip" href="#matrix">Compétences détaillées</a>
+      <a class="chip" href="#topos">Réseaux (Topos)</a>
+      <a class="chip" href="#cmds">Commandes</a>
       <a class="chip" href="#projects">Projets</a>
       <a class="chip" href="#xp">Expériences</a>
       <a class="chip" href="#contact">Contact</a>
     </div>
   </nav>
 
-  <header>
-    <figure class="avatar"><img src="assets/yassine.jpg" alt="Photo de Yassine Messaoudi"></figure>
-    <h1 class="title">Yassine Messaoudi</h1>
-    <p class="subtitle">Technicien Supérieur Systèmes & Réseaux (TSSR) · Windows / Linux / Réseaux / Sécurité</p>
-    <div class="cta">
-      <button id="btnCv" class="btn btn-primary">📄 Voir mon CV</button>
-      <a class="btn btn-ghost" href="#contact">Me contacter</a>
-    </div>
-  </header>
-
   <div class="wrapper">
-    <section id="about">
+    <header class="site">
+      <div class="avatar-wrap">
+        <figure class="avatar"><img src="assets/yassine.jpg" alt="Photo de Yassine Messaoudi"></figure>
+        <div class="orbit" aria-hidden="true">
+          <span title="Outils">🛠️</span>
+          <span title="Sécurité">🔒</span>
+          <span title="Réseaux">🌐</span>
+          <span title="Automatisation">⚙️</span>
+        </div>
+      </div>
+      <div class="status-think" aria-live="polite">
+        <span class="bubble">Plan VLAN</span>
+        <span class="bubble">GPO Hardening</span>
+        <span class="bubble">DHCP relay</span>
+        <span class="bubble">Scripts PS/Bash</span>
+        <span class="bubble">Dépannage réseau</span>
+      </div>
+      <h1 class="title">Yassine Messaoudi</h1>
+      <p class="subtitle">Technicien Supérieur Systèmes & Réseaux (TSSR) · Windows / Linux · Réseaux & Sécurité</p>
+      <div class="cta">
+        <button id="btnCv" class="btn btn-primary">📄 Voir mon CV</button>
+        <a class="btn btn-ghost" href="#contact">Me contacter</a>
+      </div>
+    </header>
+
+    <section id="about" class="about">
       <h2>À propos</h2>
-      <p>Je conçois, administre et sécurise des environnements Windows et Linux. Habitué aux TPs TSSR (AD/DS, GPO, DNS/DHCP, VLAN, routage, scripts Bash/Powershell).</p>
+      <p>Je conçois, administre et sécurise des environnements Windows & Linux. Habitué aux TPs TSSR (AD/DS, GPO, DNS/DHCP, VLAN, inter-VLAN, scripts PowerShell/Bash), j’aime automatiser, documenter et livrer proprement.</p>
       <p class="muted">Basé à Montigny-lès-Cormeilles · Disponible pour alternance / missions IT.</p>
     </section>
 
     <section id="skills">
       <h2>Compétences clés</h2>
       <div class="skills">
-        <span class="badge">Windows Server (AD, GPO, DNS, DHCP)</span>
+        <span class="badge">Windows Server (AD/GPO/DNS/DHCP)</span>
         <span class="badge">Linux (Debian/Ubuntu)</span>
-        <span class="badge">Réseaux Cisco (VLAN, DHCP relay)</span>
+        <span class="badge">Cisco (VLAN, Trunk, Inter-VLAN)</span>
+        <span class="badge">DHCP relay</span>
         <span class="badge">PowerShell / Bash</span>
-        <span class="badge">Virtualisation (VMware, VirtualBox)</span>
-        <span class="badge">Sécurité et supervision</span>
+        <span class="badge">Virtualisation (VMware/VirtualBox)</span>
+        <span class="badge">Supervision & Logs</span>
+        <span class="badge">Hardening de base</span>
       </div>
     </section>
 
+    <section id="matrix">
+      <h2>Compétences détaillées</h2>
+      <table class="table">
+        <thead><tr><th>Domaines</th><th>Compétences</th><th>Niveau</th><th>Preuves / TP</th></tr></thead>
+        <tbody>
+          <tr><td>Windows Server</td><td>AD DS, GPO, DNS, DHCP, AGDLP, partage/NTFS, DFS</td><td>★★★★☆</td><td>TP labo : domaine, OU, GPO sécurité, scripts PowerShell</td></tr>
+          <tr><td>Réseaux Cisco</td><td>VLAN, 802.1Q trunk, Inter-VLAN (router-on-a-stick)</td><td>★★★★☆</td><td>Packet Tracer : topologie multi-VLAN, tests ping/trace</td></tr>
+          <tr><td>Linux</td><td>Utilisateurs/groupes, sudoers, services, logs, cron</td><td>★★★☆☆</td><td>Menu Bash supervision + journalisation</td></tr>
+          <tr><td>Scripting</td><td>PowerShell (AD), Bash (maintenance, sauvegardes)</td><td>★★★★☆</td><td>Scripts d’auto-provisioning & supervision</td></tr>
+          <tr><td>Virtualisation</td><td>VMware/VirtualBox, snapshots, réseaux NAT/Host-Only</td><td>★★★☆☆</td><td>Lab multi-VM Windows/Linux</td></tr>
+          <tr><td>Sécurité</td><td>Baselines, comptes/ACL, mises à jour, sauvegardes</td><td>★★★☆☆</td><td>GPO baseline + scripts de contrôle</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="topos">
+      <h2>Réseaux — Topos rapides</h2>
+      <ul>
+        <li><strong>VLAN & Trunking :</strong> segmentation L2, ports access/trunk, 802.1Q.</li>
+        <li><strong>Inter-VLAN :</strong> sous-interfaces G0/0.X + encapsulation dot1q.</li>
+        <li><strong>DHCP relay :</strong> <code>ip helper-address</code> vers serveur DHCP.</li>
+        <li><strong>Adressage :</strong> /24, /27, /30 ; table d’adressage propre.</li>
+        <li><strong>Dépannage :</strong> ping, traceroute, <code>show vlan</code>, <code>show ip int br</code>, journaux.</li>
+      </ul>
+    </section>
+
+    <section id="cmds">
+      <h2>Scripts & commandes utiles</h2>
+      <h3>PowerShell (AD)</h3>
+      <pre><code># Joindre un poste au domaine
+Add-Computer -DomainName entreprise.local -Credential (Get-Credential)
+
+# Créer une OU puis un utilisateur
+New-ADOrganizationalUnit -Name "RessourcesHumaines" -Path "DC=entreprise,DC=local"
+New-ADUser -Name "Sophie Martin" -SamAccountName "rh.sophie" -Path "OU=RessourcesHumaines,DC=entreprise,DC=local" -AccountPassword (ConvertTo-SecureString "Sophie@2024" -AsPlainText -Force) -Enabled $true</code></pre>
+
+      <h3>Bash (supervision)</h3>
+      <pre><code>sudo apt update && sudo apt -y upgrade
+uptime && df -h && free -h | tee -a /var/log/supervision.log</code></pre>
+
+      <h3>Cisco IOS (inter-VLAN)</h3>
+      <pre><code>conf t
+interface g0/0.10
+ encapsulation dot1q 10
+ ip address 192.168.10.1 255.255.255.0
+interface g0/0.20
+ encapsulation dot1q 20
+ ip address 192.168.20.1 255.255.255.0
+end
+wr</code></pre>
+    </section>
+
     <section id="projects">
-      <h2>Projets réalisés</h2>
+      <h2>Projets TSSR</h2>
       <div class="projects">
         <article class="card">
-          <h3>Infrastructure TSSR complète</h3>
-          <p>Active Directory, DNS, DHCP, GPO, AGDLP, scripts PowerShell d’auto-provisioning.</p>
+          <h3>Infra labo TSSR complète</h3>
+          <p class="muted">AD DS + DNS + DHCP + GPO + partage (AGDLP) + scripts PowerShell.</p>
+          <div class="stack"><span class="tag">Windows Server</span><span class="tag">PowerShell</span><span class="tag">DFS/NTFS</span></div>
         </article>
         <article class="card">
           <h3>Réseaux VLAN & Routage</h3>
-          <p>Topologie multi-VLAN, inter-VLAN, DHCP relay, documentation complète.</p>
+          <p class="muted">Multi-VLAN, trunking, inter-VLAN, DHCP relay, tests de connectivité.</p>
+          <div class="stack"><span class="tag">Cisco</span><span class="tag">VLAN</span><span class="tag">Routing</span></div>
         </article>
         <article class="card">
           <h3>Automatisation Linux</h3>
-          <p>Menu Bash de supervision, création d’utilisateurs, vérifications santé système.</p>
+          <p class="muted">Menu Bash de supervision (comptes, sauvegardes, journaux, santé).</p>
+          <div class="stack"><span class="tag">Bash</span><span class="tag">Cron</span><span class="tag">Systemd</span></div>
         </article>
       </div>
     </section>
 
     <section id="xp">
       <h2>Expériences & Formation</h2>
-      <ul>
-        <li><strong>2024-2025 :</strong> Titre Professionnel TSSR – IMIE Paris</li>
-        <li><strong>2018-2023 :</strong> Support & Réparation IT (Indépendant)</li>
-      </ul>
+      <div class="timeline">
+        <div class="time-item"><span class="when">2024 – 2025</span><strong>Titre Pro TSSR</strong><span class="muted">TPs avancés : AD/GPO, Cisco, scripts, virtualisation.</span></div>
+        <div class="time-item"><span class="when">2018 – 2023</span><strong>Support & Réparation IT (Indépendant)</strong><span class="muted">Dépannage postes, montage, diagnostic, relation client.</span></div>
+      </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="contact">
       <h2>Contact</h2>
-      <p>📧 <a href="mailto:yassine370@laposte.net">yassine370@laposte.net</a></p>
-      <p>📞 <a href="tel:+33758505924">07 58 50 59 24</a></p>
-      <p>🔗 <a href="https://www.linkedin.com/in/helpdeskadminreseauxmaintenanceinformatiquedepannageinformatiqueyassine-messaoudi-244270173" target="_blank" rel="noopener">LinkedIn</a></p>
+      <div class="grid">
+        <div class="contact-card">
+          <p>📧 Email : <a class="link" href="mailto:yassine370@laposte.net">yassine370@laposte.net</a> <button class="mini" data-copy="yassine370@laposte.net">Copier</button></p>
+          <p>📞 Téléphone : <a class="link" href="tel:+33758505924">07 58 50 59 24</a> <button class="mini" data-copy="0758505924">Copier</button></p>
+          <p>🔗 LinkedIn : <a class="link" id="lnkLinkedIn" href="https://www.linkedin.com/in/helpdeskadminreseauxmaintenanceinformatiquedepannageinformatiqueyassine-messaoudi-244270173" target="_blank" rel="noopener">Voir le profil</a></p>
+          <div class="contacts-actions">
+            <button id="btnVcf" class="btn btn-ghost">↧ Télécharger ma vCard</button>
+            <button id="btnQr" class="btn btn-primary">QR code LinkedIn</button>
+          </div>
+          <div id="qrWrap" class="qr-wrap" hidden>
+            <img id="qrImg" alt="QR code LinkedIn de Yassine" />
+            <p class="muted">Scannez pour ouvrir mon LinkedIn.</p>
+          </div>
+        </div>
+        <p>📍 Île-de-France · Déplacements possibles</p>
+      </div>
     </section>
 
     <footer>© <span id="year"></span> Yassine Messaoudi</footer>
   </div>
 
-  <div class="dock">
-    <a class="dock-btn" href="mailto:yassine370@laposte.net">✉️ Email</a>
-    <a class="dock-btn" href="tel:+33758505924">📞 Appel</a>
-    <a class="dock-btn" href="cv-yassine.pdf" target="_blank">📄 CV</a>
-    <a class="dock-btn" href="https://www.linkedin.com/in/helpdeskadminreseauxmaintenanceinformatiquedepannageinformatiqueyassine-messaoudi-244270173" target="_blank">in</a>
+  <!-- DOCK d’actions rapides -->
+  <div class="dock" aria-label="Actions rapides">
+    <a class="dock-btn" id="dockEmail" href="mailto:yassine370@laposte.net" title="Envoyer un email">✉️ Email</a>
+    <a class="dock-btn" id="dockCall" href="tel:+33758505924" title="Appeler">📞 Appel</a>
+    <a class="dock-btn" id="dockCv" href="#" title="Voir le CV">📄 CV</a>
+    <a class="dock-btn" id="dockLinkedIn" href="https://www.linkedin.com/in/helpdeskadminreseauxmaintenanceinformatiquedepannageinformatiqueyassine-messaoudi-244270173" target="_blank" rel="noopener" title="LinkedIn">in</a>
   </div>
 
-  <script>
-    document.getElementById('year').textContent=new Date().getFullYear();
+  <!-- Panneau de confirmation rapide -->
+  <div id="quickPanel" role="dialog" aria-modal="true" aria-live="polite" hidden>
+    <div class="qp-card">
+      <div class="qp-title" id="qpTitle">Action rapide</div>
+      <div class="qp-value" id="qpValue"></div>
+      <div class="qp-actions">
+        <button class="btn btn-ghost" id="qpCopy">Copier</button>
+        <button class="btn btn-primary" id="qpOpen">Ouvrir</button>
+      </div>
+    </div>
+  </div>
 
-    // Fond réseau animé
-    const c=document.getElementById('bg'),x=c.getContext('2d');let w,h,dpr=window.devicePixelRatio||1;
-    function resize(){w=c.width=innerWidth*dpr;h=c.height=innerHeight*dpr;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';}
-    resize();addEventListener('resize',resize);
-    const N=60,DIST=120*dpr,n=[];function r(a,b){return a+Math.random()*(b-a);}
-    for(let i=0;i<N;i++)n.push({x:r(0,w),y:r(0,h),vx:r(-.3,.3),vy:r(-.3,.3)});
-    (function loop(){
-      x.clearRect(0,0,w,h);
-      for(let i=0;i<N;i++){const a=n[i];a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>w)a.vx*=-1;if(a.y<0||a.y>h)a.vy*=-1;}
-      for(let i=0;i<N;i++){for(let j=i+1;j<N;j++){const a=n[i],b=n[j];const dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);if(d<DIST){const o=1-d/DIST;x.strokeStyle=`rgba(56,189,248,${0.1*o})`;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke();}}}
-      x.fillStyle='rgba(143,213,255,.3)';for(const a of n){x.beginPath();x.arc(a.x,a.y,1.8*dpr,0,Math.PI*2);x.fill();}
-      requestAnimationFrame(loop);
-    })();
-  </script>
+  <!-- Gate CV -->
+  <div id="gate" role="dialog" aria-modal="true" aria-label="Ouverture du CV" hidden>
+    <div class="gate-box">
+      <h3 class="gate-title">Vérification d’accès au CV</h3>
+      <div class="scan" aria-hidden="true"></div>
+      <div class="progress"><span></span></div>
+      <div class="muted" style="margin-top:10px">Simulation : hachage SHA-256 · chiffrement TLS · pare-feu OK</div>
+    </div>
+  </div>
+
+  <script src="js/script.js" defer></script>
 </body>
 </html>
