@@ -1,0 +1,115 @@
+/* ====== Styles dynamiques par section — Look Informatique ====== */
+
+/* Palette générale plus lumineuse */
+:root {
+  --accent-blue: #38bdf8;
+  --accent-green: #4ade80;
+  --accent-purple: #8b5cf6;
+  --accent-cyan: #06b6d4;
+  --accent-gray: #64748b;
+}
+
+/* Chaque section aura son propre gradient inspiré des écrans IT */
+#about {
+  background: linear-gradient(180deg, #0d1b27 0%, #13283d 100%);
+  border-left: 3px solid var(--accent-blue);
+}
+
+#skills {
+  background: linear-gradient(180deg, #0b1f24 0%, #103841 100%);
+  border-left: 3px solid var(--accent-green);
+}
+
+#matrix {
+  background: linear-gradient(180deg, #1a1025 0%, #24113a 100%);
+  border-left: 3px solid var(--accent-purple);
+}
+
+#topos {
+  background: linear-gradient(180deg, #0c2230 0%, #103046 100%);
+  border-left: 3px solid var(--accent-cyan);
+}
+
+#cmds {
+  background: linear-gradient(180deg, #0b0f14 0%, #16213a 100%);
+  border-left: 3px solid var(--accent-blue);
+}
+
+#projects {
+  background: linear-gradient(180deg, #101723 0%, #141f2b 100%);
+  border-left: 3px solid var(--accent-green);
+}
+
+#xp {
+  background: linear-gradient(180deg, #0c141d 0%, #101a25 100%);
+  border-left: 3px solid var(--accent-gray);
+}
+
+#contact {
+  background: linear-gradient(180deg, #0d151f 0%, #15202a 100%);
+  border-left: 3px solid var(--accent-blue);
+}
+
+/* Bande lumineuse animée en haut de chaque section */
+section::before {
+  content: "";
+  display: block;
+  height: 3px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  background: linear-gradient(90deg,
+    var(--accent-blue),
+    var(--accent-green),
+    var(--accent-purple),
+    var(--accent-cyan),
+    var(--accent-blue)
+  );
+  background-size: 200% 100%;
+  animation: band 6s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes band {
+  to {
+    background-position: 200% 0;
+  }
+}
+
+/* Petits ajustements pour plus de contraste */
+section h2 {
+  color: #e8f4ff;
+  text-shadow: 0 0 8px rgba(56,189,248,.3);
+}
+
+.muted {
+  color: #a9c4da;
+}
+
+.card {
+  border-color: rgba(255,255,255,.1);
+  background: rgba(10,20,30,.75);
+  backdrop-filter: blur(4px);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 26px rgba(56,189,248,.25);
+}
+
+/* Accent au survol des badges */
+.badge:hover {
+  border-color: var(--accent-blue);
+  background: rgba(56,189,248,.15);
+  box-shadow: 0 0 12px rgba(56,189,248,.2);
+}
+/* --- FIX: masquer l'ancien panneau "Étude de cas" qui bloque les clics --- */
+#caseStudy,
+.case-modal,
+.study-banner,
+[data-modal="case-study"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
